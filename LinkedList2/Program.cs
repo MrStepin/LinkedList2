@@ -12,14 +12,21 @@ namespace LinkedList2
         {
             LinkedList<int> list = new LinkedList<int>() ;
 
+            list.Add(0);
+            list.Add(0);
             list.Add(1);
             list.Add(0);
+            list.Add(2);
             list.Add(2);
             list.Add(0);
             list.Add(3);
             list.Add(0);
             list.Add(0);
             list.Add(4);
+            list.Add(0);
+            list.Add(0);
+            list.Add(0);
+            list.Add(0);
             list.Add(0);
             list.ClearListBySelectedNumber(0);
             list.Print();

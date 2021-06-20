@@ -27,53 +27,31 @@ namespace LinkedList2
             lastElement = element;
         }
 
-        public void Remove(int numberOfElement)
-        {
-            if (firstElement == null)
-                return;
-
-            if (numberOfElement == 0)
-            {
-                firstElement = firstElement.Next;
-                if (firstElement == null)
-                {
-                    lastElement = null;
-                }
-                return;
-            }
-
-            Element<T> currentElement = firstElement;
-            Element<T> previousElement = null;
-
-            while (numberOfElement-- > 0 && currentElement != null)
-            {
-                previousElement = currentElement;
-                currentElement = currentElement.Next;
-            }
-
-            if (currentElement == null)
-                return;
-
-            previousElement.Next = currentElement.Next;
-
-            if (currentElement.Next == null)
-            {
-                lastElement = previousElement;
-            }
-        }
-
         public void ClearListBySelectedNumber(T number)
         {
             Element<T> currentElement = firstElement;
-            int _numberOfElement = 0;
+            Element<T> previousElement = null;
+            if (firstElement == null)
+            {
+                return;
+            }
             while (currentElement != null)
             {
-                if (currentElement.Data.Equals(number))
+                if (currentElement.Data.Equals(number) && (previousElement != null))
                 {
-                    Remove(_numberOfElement);
-                    _numberOfElement--;
+                    if (currentElement.Next == null)
+                    {
+                        lastElement = previousElement;
+                    }
+
+                    //if (currentElement.Next != null && (currentElement.Data.Equals(number) == currentElement.Next.Data.Equals(number)))
+                    //{
+
+                    //}
+                    previousElement.Next = currentElement.Next;
+                    
                 }
-                _numberOfElement++;
+                previousElement = currentElement;
                 currentElement = currentElement.Next;
             }
         }
