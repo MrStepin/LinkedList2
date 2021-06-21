@@ -8,56 +8,62 @@ namespace LinkedList2
 {
     public class LinkedList<T>
     {
-        private Element<T> firstElement;
-        private Element<T> lastElement;
+        private Element<T> _firstElement;
+        private Element<T> _lastElement;
 
 
         public void Add(T data)
         {
             Element<T> element = new Element<T>(data);
 
-            if (firstElement == null)
+            if (_firstElement == null)
             {
-                firstElement = element;
+                _firstElement = element;
             }
             else
             {
-                lastElement.Next = element;
+                _lastElement.Next = element;
             }
-            lastElement = element;
+            _lastElement = element;
         }
 
         public void ClearListBySelectedNumber(T number)
         {
-            Element<T> currentElement = firstElement;
+            Element<T> currentElement = _firstElement;
             Element<T> previousElement = null;
-            if (firstElement == null)
+            if (_firstElement == null)
             {
                 return;
             }
             while (currentElement != null)
             {
-                if (currentElement.Data.Equals(number) && (previousElement != null))
+                if (currentElement.Data.Equals(number))
                 {
                     if (currentElement.Next == null)
                     {
-                        lastElement = previousElement;
+                        _lastElement = previousElement;
                     }
-
-                    //if (currentElement.Next != null && (currentElement.Data.Equals(number) == currentElement.Next.Data.Equals(number)))
-                    //{
-
-                    //}
-                    previousElement.Next = currentElement.Next;
-                    
+                    if (previousElement != null)
+                    {
+                        previousElement.Next = currentElement.Next;
+                        currentElement = currentElement.Next;
+                    }
+                    if (previousElement == null)
+                    {
+                        _firstElement = currentElement.Next;
+                        currentElement = currentElement.Next;
+                    }
                 }
-                previousElement = currentElement;
-                currentElement = currentElement.Next;
+                else
+                {
+                    previousElement = currentElement;
+                    currentElement = currentElement.Next;
+                }
             }
         }
         public void Print()
         {
-            Element<T> current = firstElement;
+            Element<T> current = _firstElement;
             while (current != null)
             {
                 Console.WriteLine(current.Data);
